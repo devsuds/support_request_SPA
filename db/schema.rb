@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20170213165521) do
     t.string   "title"
     t.text     "description",     limit: 65535
     t.boolean  "is_open"
-    t.boolean  "is_closed"
-    t.boolean  "is_canceled"
+    t.boolean  "is_closed",                     default: false
+    t.boolean  "is_canceled",                   default: false
     t.text     "comment",         limit: 65535
     t.datetime "due_date"
     t.datetime "completion_date"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
