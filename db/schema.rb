@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213165521) do
+ActiveRecord::Schema.define(version: 20170214064334) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "support_id"
+    t.string   "user_id"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "supports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -18,9 +26,10 @@ ActiveRecord::Schema.define(version: 20170213165521) do
     t.boolean  "is_open"
     t.boolean  "is_closed",                     default: false
     t.boolean  "is_canceled",                   default: false
-    t.text     "comment",         limit: 65535
     t.datetime "due_date"
     t.datetime "completion_date"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
   end
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170213165521) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "user_type"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
